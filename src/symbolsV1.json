@@ -1,0 +1,418 @@
+{
+    "version": 1,
+    "language": "python",
+    "tokens": {
+      "=": {
+        "term": "assignment",
+        "zh": "赋值",
+        "layer1": "把右边计算出的结果保存到左边变量/位置。",
+        "layer2": {
+          "not": ["不是比较，不会得到 True/False。"],
+          "compare": [
+            { "code": "x = 3", "note": "赋值：改变 x 的值" },
+            { "code": "x == 3", "note": "比较：得到 True/False" }
+          ]
+        },
+        "examples": ["x = y + 1"]
+      },
+      "==": {
+        "term": "equality comparison",
+        "zh": "相等比较",
+        "layer1": "判断左右是否相等，结果是 True 或 False。",
+        "layer2": {
+          "not": ["不会改变变量的值。"]
+        },
+        "examples": ["if x == 3: ..."]
+      },
+      "!=": {
+        "term": "not equal comparison",
+        "zh": "不等比较",
+        "layer1": "判断左右是否不相等，结果是 True 或 False。",
+        "examples": ["if x != 0: ..."]
+      },
+      "<": {
+        "term": "less than",
+        "zh": "小于比较",
+        "layer1": "判断左边是否小于右边，结果是 True 或 False。",
+        "examples": ["if a < b: ..."]
+      },
+      ">": {
+        "term": "greater than",
+        "zh": "大于比较",
+        "layer1": "判断左边是否大于右边，结果是 True 或 False。",
+        "examples": ["if a > b: ..."]
+      },
+      "<=": {
+        "term": "less than or equal",
+        "zh": "小于等于比较",
+        "layer1": "判断左边是否小于等于右边。",
+        "examples": ["if a <= b: ..."]
+      },
+      ">=": {
+        "term": "greater than or equal",
+        "zh": "大于等于比较",
+        "layer1": "判断左边是否大于等于右边。",
+        "examples": ["if a >= b: ..."]
+      },
+      "is": {
+        "term": "identity",
+        "zh": "同一对象判断",
+        "layer1": "判断两边是不是同一个对象（常用来判断 None）。",
+        "examples": ["if x is None: ..."]
+      },
+      "is not": {
+        "term": "identity (negated)",
+        "zh": "同一对象判断（否定）",
+        "layer1": "判断两边不是同一个对象（常用来判断不是 None）。",
+        "examples": ["if x is not None: ..."]
+      },
+      "in": {
+        "term": "membership test",
+        "zh": "成员判断",
+        "layer1": "判断左边是否包含在右边里面。",
+        "examples": ["if x in items: ..."]
+      },
+      "not in": {
+        "term": "membership test (negated)",
+        "zh": "成员判断（否定）",
+        "layer1": "判断左边是否不在右边里面。",
+        "examples": ["if x not in items: ..."]
+      },
+      "+": {
+        "term": "addition",
+        "zh": "加法",
+        "layer1": "把两个值相加（数字加法/字符串拼接/列表拼接等）。",
+        "examples": ["a + b"]
+      },
+      "-": {
+        "term": "subtraction / unary minus",
+        "zh": "减法 / 取负",
+        "layer1": "数字时表示减法；放在一个数前面表示取相反数。",
+        "examples": ["a - b", "-x"]
+      },
+      "*": {
+        "term": "multiplication",
+        "zh": "乘法",
+        "layer1": "数字相乘；也常见于字符串/列表重复。",
+        "examples": ["a * b", "\"ha\" * 3"]
+      },
+      "/": {
+        "term": "division",
+        "zh": "除法",
+        "layer1": "除法（结果通常是小数）。",
+        "examples": ["a / b"]
+      },
+      "//": {
+        "term": "floor division",
+        "zh": "整除",
+        "layer1": "除法但去掉小数部分（向下取整）。",
+        "examples": ["a // b"]
+      },
+      "%": {
+        "term": "modulo",
+        "zh": "取余",
+        "layer1": "求余数。",
+        "examples": ["a % b"]
+      },
+      "**": {
+        "term": "power",
+        "zh": "乘方",
+        "layer1": "幂运算：a 的 b 次方。",
+        "examples": ["a ** 2"]
+      },
+      "+=": {
+        "term": "augmented assignment (add)",
+        "zh": "加等于",
+        "layer1": "把右边加到左边上，再存回左边（简写）。",
+        "layer2": {
+          "compare": [
+            { "code": "x += 1", "note": "通常等价于 x = x + 1" }
+          ]
+        },
+        "examples": ["x += 1"]
+      },
+      "-=": {
+        "term": "augmented assignment (sub)",
+        "zh": "减等于",
+        "layer1": "把左边减去右边，再存回左边（简写）。",
+        "examples": ["x -= 1"]
+      },
+      "*=": {
+        "term": "augmented assignment (mul)",
+        "zh": "乘等于",
+        "layer1": "把左边乘以右边，再存回左边（简写）。",
+        "examples": ["x *= 2"]
+      },
+      "/=": {
+        "term": "augmented assignment (div)",
+        "zh": "除等于",
+        "layer1": "把左边除以右边，再存回左边（简写）。",
+        "examples": ["x /= 2"]
+      },
+      "//=": {
+        "term": "augmented assignment (floor div)",
+        "zh": "整除等于",
+        "layer1": "把左边整除右边，再存回左边（简写）。",
+        "examples": ["x //= 2"]
+      },
+      "%=": {
+        "term": "augmented assignment (mod)",
+        "zh": "取余等于",
+        "layer1": "把左边对右边取余，再存回左边（简写）。",
+        "examples": ["x %= 10"]
+      },
+      "**=": {
+        "term": "augmented assignment (power)",
+        "zh": "乘方等于",
+        "layer1": "把左边做乘方运算，再存回左边（简写）。",
+        "examples": ["x **= 2"]
+      },
+      ".": {
+        "term": "attribute access",
+        "zh": "属性/成员访问",
+        "layer1": "从一个对象上取它的成员/方法（再决定要不要调用）。",
+        "layer2": {
+          "compare": [
+            { "code": "obj.method", "note": "取出 method 这个东西（还没运行）" },
+            { "code": "obj.method()", "note": "取出后立刻运行（调用）" }
+          ]
+        },
+        "examples": ["np.random", "y.astype"]
+      },
+      "()": {
+        "term": "call / grouping",
+        "zh": "调用 / 分组",
+        "layer1": "放在函数/方法名后面表示调用；也可用来改变运算优先级。",
+        "examples": ["print(x)", "(a + b) * c"]
+      },
+      "[]": {
+        "term": "index / slice / list literal",
+        "zh": "索引/切片 / 列表",
+        "layer1": "用于索引/切片（a[i], a[i:j]）；也用于列表字面量 [1,2,3]。",
+        "examples": ["a[0]", "a[:10]", "[x0, x1]"]
+      },
+      ":": {
+        "term": "block start / slice colon",
+        "zh": "代码块开始 / 切片冒号",
+        "layer1": "在 if/for/def 后表示接下来是代码块；在切片里表示范围（i:j）。",
+        "examples": ["if x: ...", "a[1:5]"]
+      },
+      ",": {
+        "term": "separator",
+        "zh": "分隔符",
+        "layer1": "分隔参数、列表元素、返回值等。",
+        "examples": ["f(a, b)", "[1, 2]", "return x, y"]
+      },
+      "#": {
+        "term": "comment",
+        "zh": "注释",
+        "layer1": "从 # 开始到行尾都是注释，不会执行。",
+        "examples": ["# this is a comment"]
+      },
+      "\\n": {
+        "term": "newline escape",
+        "zh": "换行符",
+        "layer1": "字符串里表示换行显示（相当于按一次回车）。",
+        "examples": ["\"hello\\nworld\""]
+      },
+      "\\t": {
+        "term": "tab escape",
+        "zh": "制表符",
+        "layer1": "字符串里表示横向跳到下一个制表位（像键盘 Tab）。",
+        "examples": ["\"a\\tb\""]
+      },
+      "\\\\": {
+        "term": "backslash escape",
+        "zh": "反斜杠本身",
+        "layer1": "在字符串里写出一个反斜杠字符。",
+        "examples": ["\"C:\\\\Users\\\\...\""]
+      },
+      "\\\"": {
+        "term": "quote escape (double)",
+        "zh": "双引号转义",
+        "layer1": "在双引号字符串里表示一个双引号字符。",
+        "examples": ["\"She said: \\\"hi\\\"\""]
+      },
+      "\\'": {
+        "term": "quote escape (single)",
+        "zh": "单引号转义",
+        "layer1": "在单引号字符串里表示一个单引号字符。",
+        "examples": ["'It\\'s ok'"]
+      },
+      "and": {
+        "term": "logical and",
+        "zh": "逻辑与",
+        "layer1": "两个条件都为 True 才为 True。",
+        "examples": ["a > 0 and b > 0"]
+      },
+      "or": {
+        "term": "logical or",
+        "zh": "逻辑或",
+        "layer1": "两个条件只要有一个为 True 就为 True。",
+        "examples": ["a == 0 or b == 0"]
+      },
+      "not": {
+        "term": "logical not",
+        "zh": "逻辑非",
+        "layer1": "把 True/False 反过来。",
+        "examples": ["not done"]
+      },
+      "True": {
+        "term": "boolean literal",
+        "zh": "布尔真",
+        "layer1": "表示“真”。",
+        "examples": ["flag = True"]
+      },
+      "False": {
+        "term": "boolean literal",
+        "zh": "布尔假",
+        "layer1": "表示“假”。",
+        "examples": ["flag = False"]
+      },
+      "None": {
+        "term": "none literal",
+        "zh": "空值",
+        "layer1": "表示“没有值/空”。常用 `is None` 判断。",
+        "examples": ["x = None", "if x is None: ..."]
+      },
+      "def": {
+        "term": "function definition",
+        "zh": "定义函数",
+        "layer1": "定义一个函数（后面可以用函数名调用它）。",
+        "examples": ["def f(x): return x"]
+      },
+      "return": {
+        "term": "return",
+        "zh": "返回",
+        "layer1": "从函数中返回结果（可以返回多个，用逗号）。",
+        "examples": ["return x", "return x, y"]
+      },
+      "class": {
+        "term": "class definition",
+        "zh": "定义类",
+        "layer1": "定义一个类（一种“自定义类型/模板”）。",
+        "examples": ["class A: pass"]
+      },
+      "pass": {
+        "term": "pass",
+        "zh": "占位",
+        "layer1": "占位用：这里先什么都不做。",
+        "examples": ["def f(): pass"]
+      },
+      "import": {
+        "term": "import",
+        "zh": "导入模块",
+        "layer1": "把别的模块/库引入当前文件使用。",
+        "examples": ["import numpy as np"]
+      },
+      "from": {
+        "term": "from-import",
+        "zh": "从模块导入",
+        "layer1": "从某个模块里取出具体名字。",
+        "examples": ["from math import sqrt"]
+      },
+      "as": {
+        "term": "alias",
+        "zh": "别名",
+        "layer1": "给导入的名字起一个短名字（别名）。",
+        "examples": ["import numpy as np"]
+      },
+      "if": {
+        "term": "if",
+        "zh": "条件判断",
+        "layer1": "如果条件为 True，就执行后面的代码块。",
+        "examples": ["if x > 0: ..."]
+      },
+      "elif": {
+        "term": "elif",
+        "zh": "否则如果",
+        "layer1": "如果前面的 if 不成立，就检查这个条件。",
+        "examples": ["elif x == 0: ..."]
+      },
+      "else": {
+        "term": "else",
+        "zh": "否则",
+        "layer1": "如果 if/elif 都不成立，就执行这里的代码块。",
+        "examples": ["else: ..."]
+      },
+      "for": {
+        "term": "for loop",
+        "zh": "循环",
+        "layer1": "遍历一个序列/集合，每次取一个元素来执行代码块。",
+        "examples": ["for x in items: ..."]
+      },
+      "while": {
+        "term": "while loop",
+        "zh": "条件循环",
+        "layer1": "只要条件为 True，就重复执行代码块。",
+        "examples": ["while n > 0: ..."]
+      },
+      "break": {
+        "term": "break",
+        "zh": "跳出循环",
+        "layer1": "立刻结束当前循环。",
+        "examples": ["break"]
+      },
+      "continue": {
+        "term": "continue",
+        "zh": "跳过本次循环",
+        "layer1": "跳过本次循环剩余代码，进入下一次循环。",
+        "examples": ["continue"]
+      },
+      "with": {
+        "term": "with",
+        "zh": "上下文管理",
+        "layer1": "进入一个会自动收尾的代码块（常用于文件、锁等）。",
+        "examples": ["with open('a.txt') as f: ..."]
+      },
+      "try": {
+        "term": "try",
+        "zh": "尝试运行",
+        "layer1": "尝试运行一段代码，出错时交给 except 处理。",
+        "examples": ["try: ... except: ..."]
+      },
+      "except": {
+        "term": "except",
+        "zh": "捕获错误",
+        "layer1": "处理 try 里发生的错误。",
+        "examples": ["except ValueError: ..."]
+      },
+      "finally": {
+        "term": "finally",
+        "zh": "无论如何都执行",
+        "layer1": "不管是否出错，finally 里的代码都会执行。",
+        "examples": ["finally: ..."]
+      },
+      "raise": {
+        "term": "raise",
+        "zh": "抛出错误",
+        "layer1": "主动抛出一个错误。",
+        "examples": ["raise ValueError('bad')"]
+      },
+      "lambda": {
+        "term": "lambda",
+        "zh": "匿名函数",
+        "layer1": "写一个没有名字的短函数。",
+        "examples": ["lambda x: x + 1"]
+      },
+      "len(...)": {
+        "term": "builtin len",
+        "zh": "长度",
+        "layer1": "获取一个序列/容器的长度（元素个数）。",
+        "examples": ["len(X)"]
+      },
+      "print(...)": {
+        "term": "builtin print",
+        "zh": "打印",
+        "layer1": "把内容输出到屏幕/控制台。",
+        "examples": ["print('hi')"]
+      },
+      "range(...)": {
+        "term": "builtin range",
+        "zh": "范围序列",
+        "layer1": "生成一个数字序列（常用于 for 循环）。",
+        "examples": ["for i in range(10): ..."]
+      }
+    }
+  }
+  

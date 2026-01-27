@@ -1,0 +1,292 @@
+{
+  "tokens": {
+    "=": {
+      "layer1": "赋值：将右边的值赋给左边的变量",
+      "layer2": {
+        "clarification": "常见误解：= 不是比较，== 才是比较",
+        "example": "x = 5  # 把 5 赋给 x",
+        "casual": "可以理解为'让 x 等于 5'"
+      }
+    },
+    "==": {
+      "layer1": "比较：判断左右两边是否相等",
+      "layer2": {
+        "clarification": "与 = 的区别：== 是比较，= 是赋值",
+        "example": "if x == 5:  # 判断 x 是否等于 5",
+        "casual": "问'x 等于 5 吗？'，返回 True 或 False"
+      }
+    },
+    ".": {
+      "layer1": "点号：访问对象的属性或方法",
+      "layer2": {
+        "clarification": "表示'的'，如 obj.method 表示 obj 的 method",
+        "example": "text.upper()  # 调用 text 的 upper 方法",
+        "casual": "可以理解为'的'，如'字符串的大写方法'"
+      }
+    },
+    "()": {
+      "layer1": "圆括号：调用函数或改变运算顺序",
+      "layer2": {
+        "clarification": "函数名后加 () 表示调用，如 print()",
+        "example": "print('hello')  # 调用 print 函数",
+        "casual": "函数名后加括号就是'执行这个函数'"
+      }
+    },
+    "[]": {
+      "layer1": "方括号：访问列表或字典的元素",
+      "layer2": {
+        "clarification": "用于获取列表中的某个位置的值",
+        "example": "arr[0]  # 获取列表 arr 的第一个元素",
+        "casual": "可以理解为'第几个'，如'第 0 个元素'"
+      }
+    },
+    ",": {
+      "layer1": "逗号：分隔多个值或参数",
+      "layer2": {
+        "clarification": "用于分隔多个项目，如函数参数、列表元素",
+        "example": "print(a, b)  # 打印 a 和 b 两个值",
+        "casual": "表示'和'，如'打印 a 和 b'"
+      }
+    },
+    "\\n": {
+      "layer1": "换行符：在字符串中表示从这里开始换一行显示",
+      "layer2": {
+        "clarification": "在字符串中写 \\n 会在显示时换行",
+        "example": "print('a\\nb')  # 会打印两行：a 和 b",
+        "casual": "告诉程序'这里要换行'"
+      }
+    },
+    "\\t": {
+      "layer1": "制表符：在字符串中表示一个制表符（通常显示为多个空格）",
+      "layer2": {
+        "clarification": "用于对齐文本，通常相当于 4 个空格",
+        "example": "print('a\\tb')  # a 和 b 之间会有较大间距",
+        "casual": "用于对齐，让文本看起来整齐"
+      }
+    },
+    "def": {
+      "layer1": "定义函数：创建一个可重复使用的代码块",
+      "layer2": {
+        "clarification": "def 后面跟函数名和参数，定义一段代码逻辑",
+        "example": "def greet(name):  # 定义一个名为 greet 的函数",
+        "casual": "可以理解为'创建一个功能'"
+      }
+    },
+    "return": {
+      "layer1": "返回：函数执行后返回一个值",
+      "layer2": {
+        "clarification": "函数执行到这里会结束，并把值返回给调用者",
+        "example": "return x + 1  # 返回 x+1 的结果",
+        "casual": "可以理解为'给出结果'"
+      }
+    },
+    "import": {
+      "layer1": "导入：引入其他模块的功能",
+      "layer2": {
+        "clarification": "用于使用别人写好的代码，如 import math",
+        "example": "import math  # 导入数学模块",
+        "casual": "可以理解为'拿来用'"
+      }
+    },
+    "!=": {
+      "layer1": "不等于：判断左右两边是否不相等",
+      "layer2": {
+        "clarification": "与 == 相反，当两边不相等时返回 True",
+        "example": "if x != 5:  # 判断 x 是否不等于 5",
+        "casual": "问'x 不等于 5 吗？'"
+      }
+    },
+    "+=": {
+      "layer1": "加等于：将右边的值加到左边变量上",
+      "layer2": {
+        "clarification": "等价于 x = x + y，但更简洁",
+        "example": "x += 1  # 等同于 x = x + 1",
+        "casual": "可以理解为'增加'"
+      }
+    },
+    "-=": {
+      "layer1": "减等于：将右边的值从左边变量中减去",
+      "layer2": {
+        "clarification": "等价于 x = x - y，但更简洁",
+        "example": "x -= 1  # 等同于 x = x - 1",
+        "casual": "可以理解为'减少'"
+      }
+    },
+    "**": {
+      "layer1": "幂运算：计算左边的数的右边次方",
+      "layer2": {
+        "clarification": "用于计算乘方，如 2**3 表示 2 的 3 次方",
+        "example": "2**3  # 结果是 8（2 的 3 次方）",
+        "casual": "可以理解为'几次方'"
+      }
+    },
+    ":": {
+      "layer1": "冒号：用于切片、字典、函数定义等",
+      "layer2": {
+        "clarification": "在切片中表示范围，在字典中分隔键值对",
+        "example": "arr[1:3]  # 获取列表的第 1 到第 3 个元素",
+        "casual": "可以理解为'到'或'是'"
+      }
+    },
+    "{": {
+      "layer1": "左花括号：字典的开始",
+      "layer2": {
+        "clarification": "用于创建字典，包含键值对",
+        "example": "{'name': 'Tom'}  # 创建一个字典",
+        "casual": "表示'开始一个字典'"
+      }
+    },
+    "}": {
+      "layer1": "右花括号：字典的结束",
+      "layer2": {
+        "clarification": "与 { 配对，表示字典结束",
+        "example": "{'name': 'Tom'}  # 字典结束",
+        "casual": "表示'字典结束'"
+      }
+    },
+    "if": {
+      "layer1": "如果：条件判断，满足条件时执行代码",
+      "layer2": {
+        "clarification": "用于根据条件决定是否执行某段代码",
+        "example": "if x > 0:  # 如果 x 大于 0",
+        "casual": "可以理解为'要是...的话'"
+      }
+    },
+    "else": {
+      "layer1": "否则：当 if 条件不满足时执行",
+      "layer2": {
+        "clarification": "与 if 配合使用，表示'其他情况'",
+        "example": "else:  # 否则（当 if 条件不满足时）",
+        "casual": "可以理解为'要不然'"
+      }
+    },
+    "for": {
+      "layer1": "循环：重复执行代码块",
+      "layer2": {
+        "clarification": "用于遍历列表、字符串等，重复执行代码",
+        "example": "for x in [1,2,3]:  # 遍历列表中的每个元素",
+        "casual": "可以理解为'对于每一个'"
+      }
+    },
+    "in": {
+      "layer1": "在...中：检查元素是否在容器中",
+      "layer2": {
+        "clarification": "用于检查某个值是否在列表、字符串等中",
+        "example": "if 'a' in 'abc':  # 检查 'a' 是否在字符串中",
+        "casual": "可以理解为'在...里面吗？'"
+      }
+    },
+    "#": {
+      "layer1": "注释：代码中不会被执行的说明文字",
+      "layer2": {
+        "clarification": "用于写注释，帮助理解代码，程序不会执行",
+        "example": "# 这是一行注释",
+        "casual": "可以理解为'这是说明，不是代码'"
+      }
+    },
+    "+": {
+      "layer1": "加号：加法运算或字符串拼接",
+      "layer2": {
+        "clarification": "用于数字相加或字符串连接",
+        "example": "3 + 5  # 结果是 8",
+        "casual": "可以理解为'加上'"
+      }
+    },
+    "-": {
+      "layer1": "减号：减法运算",
+      "layer2": {
+        "clarification": "用于数字相减",
+        "example": "5 - 3  # 结果是 2",
+        "casual": "可以理解为'减去'"
+      }
+    },
+    "*": {
+      "layer1": "乘号：乘法运算",
+      "layer2": {
+        "clarification": "用于数字相乘",
+        "example": "3 * 4  # 结果是 12",
+        "casual": "可以理解为'乘以'"
+      }
+    },
+    "/": {
+      "layer1": "除号：除法运算",
+      "layer2": {
+        "clarification": "用于数字相除，结果是浮点数",
+        "example": "10 / 3  # 结果是 3.333...",
+        "casual": "可以理解为'除以'"
+      }
+    },
+    "<": {
+      "layer1": "小于：判断左边是否小于右边",
+      "layer2": {
+        "clarification": "用于比较大小，返回 True 或 False",
+        "example": "if x < 5:  # 如果 x 小于 5",
+        "casual": "可以理解为'比...小'"
+      }
+    },
+    ">": {
+      "layer1": "大于：判断左边是否大于右边",
+      "layer2": {
+        "clarification": "用于比较大小，返回 True 或 False",
+        "example": "if x > 5:  # 如果 x 大于 5",
+        "casual": "可以理解为'比...大'"
+      }
+    },
+    "<=": {
+      "layer1": "小于等于：判断左边是否小于或等于右边",
+      "layer2": {
+        "clarification": "用于比较大小，包含等于的情况",
+        "example": "if x <= 5:  # 如果 x 小于或等于 5",
+        "casual": "可以理解为'小于或等于'"
+      }
+    },
+    ">=": {
+      "layer1": "大于等于：判断左边是否大于或等于右边",
+      "layer2": {
+        "clarification": "用于比较大小，包含等于的情况",
+        "example": "if x >= 5:  # 如果 x 大于或等于 5",
+        "casual": "可以理解为'大于或等于'"
+      }
+    },
+    "and": {
+      "layer1": "并且：逻辑与，两个条件都满足才为 True",
+      "layer2": {
+        "clarification": "用于组合多个条件，所有条件都要满足",
+        "example": "if x > 0 and x < 10:  # x 大于 0 并且小于 10",
+        "casual": "可以理解为'而且'"
+      }
+    },
+    "or": {
+      "layer1": "或者：逻辑或，任一条件满足就为 True",
+      "layer2": {
+        "clarification": "用于组合多个条件，任一条件满足即可",
+        "example": "if x < 0 or x > 10:  # x 小于 0 或者大于 10",
+        "casual": "可以理解为'或者'"
+      }
+    },
+    "not": {
+      "layer1": "非：逻辑非，取反",
+      "layer2": {
+        "clarification": "用于取反，True 变 False，False 变 True",
+        "example": "if not x:  # 如果 x 为 False（或 None、0 等）",
+        "casual": "可以理解为'不是'"
+      }
+    },
+    "\\\"": {
+      "layer1": "转义双引号：在字符串中表示一个双引号字符",
+      "layer2": {
+        "clarification": "用于在双引号字符串中表示双引号本身",
+        "example": "print(\"He said \\\"Hello\\\"\")  # 打印包含双引号的字符串",
+        "casual": "告诉程序'这里要显示一个双引号'"
+      }
+    },
+    "\\\\": {
+      "layer1": "转义反斜杠：在字符串中表示一个反斜杠字符",
+      "layer2": {
+        "clarification": "用于在字符串中表示反斜杠本身",
+        "example": "print('C:\\\\Users')  # 打印路径",
+        "casual": "告诉程序'这里要显示一个反斜杠'"
+      }
+    }
+  }
+}

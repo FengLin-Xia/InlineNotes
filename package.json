@@ -1,0 +1,41 @@
+{
+  "name": "inline-notes",
+  "displayName": "Inline Notes - Python 阅读注释",
+  "description": "面向 Python 初学者的代码行与符号解释插件",
+  "version": "0.1.0",
+  "publisher": "inline-notes",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onLanguage:python"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "python",
+        "extensions": [".py"]
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./ && npm run copy-resources",
+    "copy-resources": "node -e \"const fs=require('fs');if(fs.existsSync('src/symbolsV1.json'))fs.copyFileSync('src/symbolsV1.json','out/symbolsV1.json');if(fs.existsSync('src/symbols.json'))fs.copyFileSync('src/symbols.json','out/symbols.json')\"",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.80.0",
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "license": "MIT"
+}
