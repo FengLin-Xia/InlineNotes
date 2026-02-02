@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">InlineNote</string>
+    <string name="trigger_explain">解释</string>
+    <string name="overlay_close">关闭</string>
+    <string name="error_network">网络不可用，未能生成解释</string>
+    <string name="error_generic">未能生成解释，请稍后再试</string>
+    <string name="accessibility_guide_title">开启无障碍服务</string>
+    <string name="accessibility_guide_body">InlineNote 需要「无障碍」权限才能在其他应用中获取你选中的文字。请点击下方按钮，在系统设置中开启本服务的开关。</string>
+    <string name="accessibility_go_settings">去设置</string>
+    <string name="api_key_hint">OpenAI API Key（仅存于本机）</string>
+    <string name="api_key_save">保存</string>
+    <string name="api_key_saved">已保存</string>
+    <string name="accessibility_service_description">用于在其他应用中选中文字后显示「解释」按钮，并调用 AI 生成大白话解释。仅读取你选中的内容，不会自动操作界面。</string>
+</resources>

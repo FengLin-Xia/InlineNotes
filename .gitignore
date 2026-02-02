@@ -1,4 +1,2 @@
-out
-node_modules
-.vscode-test
-*.vsix
+# Old folder name (typo), keep ignored after rename to vscode-extension
+vscode extention/

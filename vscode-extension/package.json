@@ -1,14 +1,26 @@
 {
   "name": "inline-notes",
-  "displayName": "Inline Notes - Python 阅读注释",
-  "description": "面向 Python 初学者的代码行与符号解释插件",
-  "version": "0.1.0",
-  "publisher": "inline-notes",
+  "displayName": "Inline Notes",
+  "description": "面向 Python 初学者的代码行与符号解释插件。悬停即可查看行解释与符号解释。",
+  "version": "0.1.1",
+  "publisher": "FenglinXia",
+  "icon": "images/icon.png",
   "engines": {
     "vscode": "^1.80.0"
   },
   "categories": [
+    "Education",
     "Other"
+  ],
+  "keywords": [
+    "education",
+    "beginner",
+    "learning",
+    "python",
+    "inline",
+    "notes",
+    "注释",
+    "解释"
   ],
   "activationEvents": [
     "onLanguage:python"
@@ -23,7 +35,8 @@
     ]
   },
   "scripts": {
-    "vscode:prepublish": "npm run compile",
+    "vscode:prepublish": "npm run resize-icon && npm run compile",
+    "resize-icon": "node scripts/resize-icon.js",
     "compile": "tsc -p ./ && npm run copy-resources",
     "copy-resources": "node -e \"const fs=require('fs');if(fs.existsSync('src/symbolsV1.json'))fs.copyFileSync('src/symbolsV1.json','out/symbolsV1.json');if(fs.existsSync('src/symbols.json'))fs.copyFileSync('src/symbols.json','out/symbols.json')\"",
     "watch": "tsc -watch -p ./"
@@ -31,11 +44,16 @@
   "devDependencies": {
     "@types/vscode": "^1.80.0",
     "@types/node": "^20.0.0",
+    "sharp": "^0.33.0",
     "typescript": "^5.0.0"
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/FengLin-Xia/InlineNotes"
   },
+  "bugs": {
+    "url": "https://github.com/FengLin-Xia/InlineNotes/issues"
+  },
+  "homepage": "https://github.com/FengLin-Xia/InlineNotes#readme",
   "license": "MIT"
 }
