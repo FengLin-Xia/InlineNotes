@@ -35,6 +35,28 @@ class MainActivity : AppCompatActivity() {
         }
         KeyStoreHelper.getApiKey(this)?.let { apiInput.setText(it) }
 
+        val baseUrlHint = TextView(this).apply {
+            text = getString(R.string.api_base_url_hint)
+            setPadding(0, 16, 0, 8)
+        }
+        val baseUrlInput = EditText(this).apply {
+            hint = KeyStoreHelper.DEFAULT_BASE_URL
+            setPadding(16, 16, 16, 16)
+            setSingleLine(true)
+        }
+        KeyStoreHelper.getBaseUrl(this)?.let { baseUrlInput.setText(it) }
+
+        val modelHint = TextView(this).apply {
+            text = getString(R.string.api_model_hint)
+            setPadding(0, 16, 0, 8)
+        }
+        val modelInput = EditText(this).apply {
+            hint = KeyStoreHelper.DEFAULT_MODEL
+            setPadding(16, 16, 16, 16)
+            setSingleLine(true)
+        }
+        KeyStoreHelper.getModel(this)?.let { modelInput.setText(it) }
+
         val saveBtn = Button(this).apply {
             text = getString(R.string.api_key_save)
             setOnClickListener {
@@ -44,12 +66,18 @@ class MainActivity : AppCompatActivity() {
                     return@setOnClickListener
                 }
                 KeyStoreHelper.setApiKey(this@MainActivity, key)
+                KeyStoreHelper.setBaseUrl(this@MainActivity, baseUrlInput.text?.toString()?.trim() ?: "")
+                KeyStoreHelper.setModel(this@MainActivity, modelInput.text?.toString()?.trim() ?: "")
                 Toast.makeText(this@MainActivity, getString(R.string.api_key_saved), Toast.LENGTH_SHORT).show()
             }
         }
 
         layout.addView(apiHint)
         layout.addView(apiInput)
+        layout.addView(baseUrlHint)
+        layout.addView(baseUrlInput)
+        layout.addView(modelHint)
+        layout.addView(modelInput)
         layout.addView(saveBtn)
 
         val guideTitle = TextView(this).apply {

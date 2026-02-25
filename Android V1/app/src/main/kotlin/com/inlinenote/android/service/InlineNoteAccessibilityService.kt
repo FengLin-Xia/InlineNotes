@@ -2,11 +2,15 @@ package com.inlinenote.android.service
 
 import android.accessibilityservice.AccessibilityService
 import android.accessibilityservice.AccessibilityServiceInfo
+import android.content.ClipboardManager
 import android.content.Intent
 import android.os.Build
+import android.os.Handler
+import android.os.Looper
 import android.provider.Settings
 import android.view.accessibility.AccessibilityEvent
 import android.view.accessibility.AccessibilityNodeInfo
+import com.inlinenote.android.KeyStoreHelper
 import com.inlinenote.android.overlay.ExplanationOverlay
 import com.inlinenote.android.trigger.FloatingTriggerView
 import com.inlinenote.android.llm.LLMClient
@@ -20,7 +24,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 /**
- * 监听 TYPE_VIEW_TEXT_SELECTION_CHANGED，获取选中文本，做基本过滤；
+ * 双触发：① 监听 TYPE_VIEW_TEXT_SELECTION_CHANGED；② 监听剪贴板变化（复制后出解释按钮）。
  * 显示浮动「解释」按钮，用户点击后调用 LLM 并展示浮窗。
  */
 class InlineNoteAccessibilityService : AccessibilityService() {
@@ -30,6 +34,12 @@ class InlineNoteAccessibilityService : AccessibilityService() {
     private lateinit var overlay: ExplanationOverlay
     private var llmClient: LLMClient? = null
     private var lastSelectedText: String = ""
+
+    private var clipboardManager: ClipboardManager? = null
+    private val clipListener = ClipboardManager.OnPrimaryClipChangedListener { onPrimaryClipChanged() }
+    private val mainHandler = Handler(Looper.getMainLooper())
+    private var lastClipboardTriggerTime = 0L
+    private val clipboardDebounceMs = 800L
 
     override fun onCreate() {
         super.onCreate()
@@ -46,13 +56,34 @@ class InlineNoteAccessibilityService : AccessibilityService() {
             notificationTimeout = 100
         }
         serviceInfo = info
+        clipboardManager = getSystemService(CLIPBOARD_SERVICE) as? ClipboardManager
+        clipboardManager?.addPrimaryClipChangedListener(clipListener)
+    }
+
+    private fun onPrimaryClipChanged() {
+        mainHandler.post {
+            val now = System.currentTimeMillis()
+            if (now - lastClipboardTriggerTime < clipboardDebounceMs) return@post
+            val clip = clipboardManager?.primaryClip ?: return@post
+            if (clip.itemCount == 0) return@post
+            val text = clip.getItemAt(0).text?.toString()?.trim() ?: return@post
+            if (!isReasonableSelection(text)) return@post
+            lastClipboardTriggerTime = now
+            lastSelectedText = text
+            triggerView.dismiss()
+            triggerView.show { onExplainClicked() }
+        }
     }
 
     override fun onAccessibilityEvent(event: AccessibilityEvent?) {
         if (event?.eventType != AccessibilityEvent.TYPE_VIEW_TEXT_SELECTION_CHANGED) return
-        val source = event.source ?: return
-        val text = getSelectedText(source)
-        source.recycle()
+        val source = event.source
+        var text = source?.let { getSelectedText(it) }
+        if (source != null) source.recycle()
+        // 部分应用（如 Chrome）不在节点里暴露选中内容，但会放在 event.text 里
+        if (text.isNullOrBlank() && event.text != null && event.text.isNotEmpty()) {
+            text = event.text.firstOrNull()?.toString()?.trim()
+        }
         if (text.isNullOrBlank()) {
             triggerView.dismiss()
             return
@@ -72,6 +103,8 @@ class InlineNoteAccessibilityService : AccessibilityService() {
     }
 
     override fun onDestroy() {
+        clipboardManager?.removePrimaryClipChangedListener(clipListener)
+        clipboardManager = null
         scope.cancel()
         triggerView.dismiss()
         overlay.dismiss()
@@ -113,7 +146,9 @@ class InlineNoteAccessibilityService : AccessibilityService() {
             openSettingsForApiKey()
             return
         }
-        llmClient = OpenAIClientDirect(apiKey)
+        val baseUrl = KeyStoreHelper.getBaseUrl(this) ?: KeyStoreHelper.DEFAULT_BASE_URL
+        val model = KeyStoreHelper.getModel(this) ?: KeyStoreHelper.DEFAULT_MODEL
+        llmClient = OpenAIClientDirect(apiKey, baseUrl, model)
         val client = llmClient ?: return
         val selected = lastSelectedText
         scope.launch {
